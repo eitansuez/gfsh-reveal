@@ -1,0 +1,9 @@
+
+
+todo:
+
+1. custom styles for output window & command window:
+  output window:  font-size smalller, and background color different, perhaps with border.
+2. customize font:  h3 - do not capitalize
+
+3. custom highlight.js language for gfsh?
