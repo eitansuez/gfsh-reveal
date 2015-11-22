@@ -14,3 +14,8 @@ Invoke script as follows:
 
 And this will produce `gfsh-session.html`, a slide deck similar to what you see at the above link (sans the h3 headers on each slide, which were added manually).
 
+Here's [the generated slides for the session](http://eitansuez.github.io/gfsh-reveal/gfsh-session.html)
+
+(use the right arrow key to trigger the first slide fragment).
+
+
