@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Illustrating use of gfsh - The Gemfire command shell</title>
+
+		<meta name="description" content="Example gfsh session">
+		<meta name="author" content="Eitan Suez">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+    <style>
+    .shell-output {
+      font-size: 70% !important;
+    }
+    </style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+        
+        <section>
+          <pre class="fragment"><code>
+$ gfsh
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+    _________________________     __
+   / _____/ ______/ ______/ /____/ /
+  / /  __/ /___  /_____  / _____  /
+ / /__/ / ____/  _____/ / /    / /
+/______/_/      /______/_/    /_/    v8.2.0
+
+Monitor and Manage GemFire
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>start locator
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Parameter "name" is required. Use "help <command name>" for assistance.
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>start locator --name=locator
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Starting a GemFire Locator in /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/locator...
+.............................
+Locator in /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/locator on eitans-mbp[10334] as locator is currently online.
+Process ID: 38488
+Uptime: 15 seconds
+GemFire Version: 8.2.0
+Java Version: 1.8.0_66
+Log File: /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/locator/locator.log
+JVM Arguments: -Dgemfire.enable-cluster-configuration=true -Dgemfire.load-cluster-configuration-from-dir=false -Dgemfire.launcher.registerSignalHandlers=true -Djava.awt.headless=true -Dsun.rmi.dgc.server.gcInterval=9223372036854775806
+Class-Path: /usr/local/Cellar/gemfire/8.2.0/libexec/lib/gemfire.jar:/usr/local/Cellar/gemfire/8.2.0/libexec/lib/locator-dependencies.jar
+
+Successfully connected to: [host=eitans-mbp, port=1099]
+
+Cluster configuration service is up and running.
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>list members
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Member Count : 1
+Coordinator  : locator (Eitans-MBP(locator:38488:locator)<v0>:44761)
+
+ Name   | Id
+------- | -------------------------------------------
+locator | Eitans-MBP(locator:38488:locator)<v0>:44761
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>start server --name=server1 --server-port=0
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Starting a GemFire Server in /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server1...
+....
+Server in /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server1 on eitans-mbp[52257] as server1 is currently online.
+Process ID: 38562
+Uptime: 2 seconds
+GemFire Version: 8.2.0
+Java Version: 1.8.0_66
+Log File: /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server1/server1.log
+JVM Arguments: -Dgemfire.default.locators=192.168.1.71[10334] -Dgemfire.use-cluster-configuration=true -XX:OnOutOfMemoryError=kill -KILL %p -Dgemfire.launcher.registerSignalHandlers=true -Djava.awt.headless=true -Dsun.rmi.dgc.server.gcInterval=9223372036854775806
+Class-Path: /usr/local/Cellar/gemfire/8.2.0/libexec/lib/gemfire.jar:/usr/local/Cellar/gemfire/8.2.0/libexec/lib/server-dependencies.jar
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>list members
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Member Count : 2
+Coordinator  : locator (Eitans-MBP(locator:38488:locator)<v0>:44761)
+
+ Name   | Id
+------- | -------------------------------------------
+server1 | Eitans-MBP(server1:38562)<v1>:26482
+locator | Eitans-MBP(locator:38488:locator)<v0>:44761
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>create region
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Parameter "name" is required. Use "help <command name>" for assistance.
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>help create region
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+NAME
+    create region
+IS AVAILABLE
+    true
+SYNOPSIS
+    Create a region with the given path and configuration. Specifying a --key-constraint and --value-constraint makes object type information available during querying and
+    indexing.
+SYNTAX
+    create region --name=value [--type=value] [--template-region=value] [--group=value(,value)*] [--skip-if-exists(=value)?] [--key-constraint=value] [--value-constraint=value]
+    [--enable-statistics=value] [--entry-idle-time-expiration=value] [--entry-idle-time-expiration-action=value] [--entry-time-to-live-expiration=value]
+    [--entry-time-to-live-expiriation-action=value] [--region-idle-time-expiration=value] [--region-idle-time-expiration-action=value] [--region-time-to-live-expiration=value]
+    [--region-time-to-live-expiration-action=value] [--disk-store=value] [--enable-synchronous-disk=value] [--enable-async-conflation=value]
+    [--enable-subscription-conflation=value] [--cache-listener=value(,value)*] [--cache-loader=value] [--cache-writer=value] [--async-event-queue-id=value(,value)*]
+    [--gateway-sender-id=value(,value)*] [--enable-concurrency-checks=value] [--enable-cloning=value] [--concurrency-level=value] [--colocated-with=value]
+    [--local-max-memory=value] [--recovery-delay=value] [--redundant-copies=value] [--startup-recovery-delay=value] [--total-max-memory=value] [--total-num-buckets=value]
+    [--compressor=value]
+PARAMETERS
+    name
+        Name/Path of the region to be created.
+        Required: true
+    type
+        Type of region to create. Examples include: PARTITION, PARTITION_REDUNDANT, REPLICATE, LOCAL, etc.
+        Required: false
+    ...
+
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>create region --name=people --type=REPLICATE
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Member  | Status
+------- | -------------------------------------
+server1 | Region "/people" created on "server1"
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>list regions
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+List of regions
+---------------
+people
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>list members
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Member Count : 2
+Coordinator  : locator (Eitans-MBP(locator:38488:locator)<v0>:44761)
+
+ Name   | Id
+------- | -------------------------------------------
+server1 | Eitans-MBP(server1:38562)<v1>:26482
+locator | Eitans-MBP(locator:38488:locator)<v0>:44761
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>query --query="select * from /people"
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+
+Result     : true
+startCount : 0
+endCount   : 20
+Rows       : 0
+
+
+NEXT_STEP_NAME : END
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>help put
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+NAME
+    put
+IS AVAILABLE
+    true
+SYNOPSIS
+    Add/Update an entry in a region. If using a region whose key and value classes have been set, then specifying --key-class and --value-class is unnecessary.
+SYNTAX
+    put --key=value --value=value --region=value [--key-class=value] [--value-class=value] [--skip-if-exists=value]
+PARAMETERS
+    key
+        String or JSON text from which to create the key.  Examples include: "James", "100L" and "('id': 'l34s')".
+        Required: true
+    value
+        String or JSON text from which to create the value.  Examples include: "manager", "100L" and "('value': 'widget')".
+        Required: true
+    region
+        Region into which the entry will be put.
+        Required: true
+    key-class
+        Fully qualified class name of the key's type. The default is java.lang.String.
+        Required: false
+    value-class
+        Fully qualified class name of the value's type. The default is java.lang.String.
+        Required: false
+    skip-if-exists
+        Skip the put operation when an entry with the same key already exists. The default is to overwrite the entry (false).
+        Required: false
+        Default (if the parameter is not specified): false
+
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>put --key="eitan" --value="eitan suez" --region="people"
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Result      : true
+Key Class   : java.lang.String
+Key         : eitan
+Value Class : java.lang.String
+Old Value   : <NULL>
+
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>query --query="select * from /people"
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+
+Result     : true
+startCount : 0
+endCount   : 20
+Rows       : 1
+
+Result
+----------
+eitan suez
+
+NEXT_STEP_NAME : END
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>put --key="mark" --value="mark secrist" --region="people"
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Result      : true
+Key Class   : java.lang.String
+Key         : mark
+Value Class : java.lang.String
+Old Value   : <NULL>
+
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>select * from /people
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Command "select * from /people" is not valid.
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>query --query="select * from /people"
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+
+Result     : true
+startCount : 0
+endCount   : 20
+Rows       : 2
+
+Result
+------------
+mark secrist
+eitan suez
+
+NEXT_STEP_NAME : END
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>describe server1
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Command "describe server1" is not valid.
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>describe
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+
+describe client               describe config               describe connection           describe disk-store           describe member               describe offline-disk-store
+describe region
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>describe member --name=server1
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Name        : server1
+Id          : Eitans-MBP(server1:38562)<v1>:26482
+Host        : eitans-mbp
+Regions     : people
+PID         : 38562
+Groups      :
+Used Heap   : 29M
+Max Heap    : 3641M
+Working Dir : /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server1
+Log file    : /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server1/server1.log
+Locators    : 192.168.1.71[10334]
+
+Cache Server Information
+Server Bind              : null
+Server Port              : 52257
+Running                  : true
+Client Connections       : 0
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>describe region --name=people
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+..........................................................
+Name            : people
+Data Policy     : replicate
+Hosting Members : server1
+
+Non-Default Attributes Shared By Hosting Members
+
+ Type  | Name | Value
+------ | ---- | -----
+Region | size | 2
+
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>start server --name=server2
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Starting a GemFire Server in /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server2...
+....
+Server in /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server2 on eitans-mbp[40404] as server2 is currently online.
+Process ID: 38615
+Uptime: 2 seconds
+GemFire Version: 8.2.0
+Java Version: 1.8.0_66
+Log File: /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server2/server2.log
+JVM Arguments: -Dgemfire.default.locators=192.168.1.71[10334] -Dgemfire.use-cluster-configuration=true -XX:OnOutOfMemoryError=kill -KILL %p -Dgemfire.launcher.registerSignalHandlers=true -Djava.awt.headless=true -Dsun.rmi.dgc.server.gcInterval=9223372036854775806
+Class-Path: /usr/local/Cellar/gemfire/8.2.0/libexec/lib/gemfire.jar:/usr/local/Cellar/gemfire/8.2.0/libexec/lib/server-dependencies.jar
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>describe region --name=people
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+..........................................................
+Name            : people
+Data Policy     : replicate
+Hosting Members : server2
+                  server1
+
+Non-Default Attributes Shared By Hosting Members
+
+ Type  | Name | Value
+------ | ---- | -----
+Region | size | 2
+
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>query --query="select * from /people"
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+
+Result     : true
+startCount : 0
+endCount   : 20
+Rows       : 2
+
+Result
+------------
+mark secrist
+eitan suez
+
+NEXT_STEP_NAME : END
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>stop server --name=server1
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Stopping Cache Server running in /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server1 on eitans-mbp[52257] as server1...
+Process ID: 38562
+Log File: /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server1/server1.log
+....
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>query --query="select * from /people"
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+
+Result     : true
+startCount : 0
+endCount   : 20
+Rows       : 2
+
+Result
+------------
+mark secrist
+eitan suez
+
+NEXT_STEP_NAME : END
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>status server --name=server1
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+No GemFire Cache Server with member name or ID server1 could be found.
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>status server --name=server2
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Server in /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server2 on eitans-mbp[40404] as server2 is currently online.
+Process ID: 38615
+Uptime: 48 seconds
+GemFire Version: 8.2.0
+Java Version: 1.8.0_66
+Log File: /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server2/server2.log
+JVM Arguments: -Dgemfire.default.locators=192.168.1.71[10334] -Dgemfire.use-cluster-configuration=true -XX:OnOutOfMemoryError=kill -KILL %p -Dgemfire.launcher.registerSignalHandlers=true -Djava.awt.headless=true -Dsun.rmi.dgc.server.gcInterval=9223372036854775806
+Class-Path: /usr/local/Cellar/gemfire/8.2.0/libexec/lib/gemfire.jar:/usr/local/Cellar/gemfire/8.2.0/libexec/lib/server-dependencies.jar
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>list members
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Member Count : 2
+Coordinator  : locator (Eitans-MBP(locator:38488:locator)<v0>:44761)
+
+ Name   | Id
+------- | -------------------------------------------
+server2 | Eitans-MBP(server2:38615)<v2>:29779
+locator | Eitans-MBP(locator:38488:locator)<v0>:44761
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>start server --name=server1
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Starting a GemFire Server in /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server1...
+The Cache Server process terminated unexpectedly with exit status 1. Please refer to the log file in /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server1 for full details.
+
+Exception in thread "main" java.lang.RuntimeException: An IO error occurred while starting a Server in /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server1 on eitans-mbp[40404]: Network is unreachable; port (40404) is not available on localhost.
+    at com.gemstone.gemfire.distributed.ServerLauncher.start(ServerLauncher.java:720)
+    at com.gemstone.gemfire.distributed.ServerLauncher.run(ServerLauncher.java:624)
+    at com.gemstone.gemfire.distributed.ServerLauncher.main(ServerLauncher.java:194)
+Caused by: java.net.BindException: Network is unreachable; port (40404) is not available on localhost.
+    at com.gemstone.gemfire.distributed.AbstractLauncher.assertPortAvailable(AbstractLauncher.java:128)
+    at com.gemstone.gemfire.distributed.ServerLauncher.start(ServerLauncher.java:679)
+    ... 2 more
+
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>start server --name=server1 --server-port=0
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Starting a GemFire Server in /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server1...
+....
+Server in /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server1 on eitans-mbp[52338] as server1 is currently online.
+Process ID: 38633
+Uptime: 2 seconds
+GemFire Version: 8.2.0
+Java Version: 1.8.0_66
+Log File: /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server1/server1.log
+JVM Arguments: -Dgemfire.default.locators=192.168.1.71[10334] -Dgemfire.use-cluster-configuration=true -XX:OnOutOfMemoryError=kill -KILL %p -Dgemfire.launcher.registerSignalHandlers=true -Djava.awt.headless=true -Dsun.rmi.dgc.server.gcInterval=9223372036854775806
+Class-Path: /usr/local/Cellar/gemfire/8.2.0/libexec/lib/gemfire.jar:/usr/local/Cellar/gemfire/8.2.0/libexec/lib/server-dependencies.jar
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>list members
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Member Count : 3
+Coordinator  : locator (Eitans-MBP(locator:38488:locator)<v0>:44761)
+
+ Name   | Id
+------- | -------------------------------------------
+server2 | Eitans-MBP(server2:38615)<v2>:29779
+server1 | Eitans-MBP(server1:38633)<v5>:37311
+locator | Eitans-MBP(locator:38488:locator)<v0>:44761
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>describe member --name=server1
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Name        : server1
+Id          : Eitans-MBP(server1:38633)<v5>:37311
+Host        : eitans-mbp
+Regions     : people
+PID         : 38633
+Groups      :
+Used Heap   : 66M
+Max Heap    : 3641M
+Working Dir : /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server1
+Log file    : /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server1/server1.log
+Locators    : 192.168.1.71[10334]
+
+Cache Server Information
+Server Bind              :
+Server Port              : 52338
+Running                  : true
+Client Connections       : 0
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>describe member --name=server2
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Name        : server2
+Id          : Eitans-MBP(server2:38615)<v2>:29779
+Host        : eitans-mbp
+Regions     : people
+PID         : 38615
+Groups      :
+Used Heap   : 15M
+Max Heap    : 3641M
+Working Dir : /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server2
+Log file    : /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/server2/server2.log
+Locators    : 192.168.1.71[10334]
+
+Cache Server Information
+Server Bind              :
+Server Port              : 40404
+Running                  : true
+Client Connections       : 0
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>exit
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Exiting...
+
+esuez at Eitans-MBP in ~/Desktop/Courses/GemfireDeveloper/scratchpad/session1
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+$ gfsh
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+    _________________________     __
+   / _____/ ______/ ______/ /____/ /
+  / /  __/ /___  /_____  / _____  /
+ / /__/ / ____/  _____/ / /    / /
+/______/_/      /______/_/    /_/    v8.2.0
+
+Monitor and Manage GemFire
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>connect --locator=localhost[10334]
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Connecting to Locator at [host=localhost, port=10334] ..
+Connecting to Manager at [host=eitans-mbp, port=1099] ..
+Successfully connected to: [host=eitans-mbp, port=1099]
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>list members
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Member Count : 3
+Coordinator  : locator (Eitans-MBP(locator:38488:locator)<v0>:44761)
+
+ Name   | Id
+------- | -------------------------------------------
+server2 | Eitans-MBP(server2:38615)<v2>:29779
+server1 | Eitans-MBP(server1:38633)<v5>:37311
+locator | Eitans-MBP(locator:38488:locator)<v0>:44761
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>shutdown
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+As a lot of data in memory will be lost, including possibly events in queues, do you really want to shutdown the entire distributed system? (Y/n): Y
+Shutdown is triggered
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>list members
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Member Count : 1
+Coordinator  : locator (Eitans-MBP(locator:38488:locator)<v0>:44761)
+
+ Name   | Id
+------- | -------------------------------------------
+locator | Eitans-MBP(locator:38488:locator)<v0>:44761
+
+
+          </code></pre>
+        </section>
+        
+        <section>
+          <pre class="fragment"><code>
+gfsh>stop locator --name=locator
+          </code></pre>
+          <pre class="fragment"><code class="shell-output">
+Stopping Locator running in /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/locator on eitans-mbp[10334] as locator...
+Process ID: 38488
+Log File: /Users/esuez/Desktop/Courses/GemfireDeveloper/scratchpad/session1/locator/locator.log
+...
+
+No longer connected to eitans-mbp[1099].
+
+          </code></pre>
+        </section>
+        
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+        width: 1280,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
