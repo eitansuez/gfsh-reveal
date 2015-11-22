@@ -76,7 +76,7 @@ gfsh>
 gfsh>start locator
           </code></pre>
           <pre class="fragment"><code class="shell-output">
-Parameter "name" is required. Use "help <command name>" for assistance.
+Parameter "name" is required. Use "help &lt;command name>" for assistance.
 
 
           </code></pre>
@@ -112,11 +112,11 @@ gfsh>list members
           </code></pre>
           <pre class="fragment"><code class="shell-output">
 Member Count : 1
-Coordinator  : locator (Eitans-MBP(locator:38488:locator)<v0>:44761)
+Coordinator  : locator (Eitans-MBP(locator:38488:locator)&lt;v0>:44761)
 
  Name   | Id
 ------- | -------------------------------------------
-locator | Eitans-MBP(locator:38488:locator)<v0>:44761
+locator | Eitans-MBP(locator:38488:locator)&lt;v0>:44761
 
 
           </code></pre>
@@ -148,12 +148,12 @@ gfsh>list members
           </code></pre>
           <pre class="fragment"><code class="shell-output">
 Member Count : 2
-Coordinator  : locator (Eitans-MBP(locator:38488:locator)<v0>:44761)
+Coordinator  : locator (Eitans-MBP(locator:38488:locator)&lt;v0>:44761)
 
  Name   | Id
 ------- | -------------------------------------------
-server1 | Eitans-MBP(server1:38562)<v1>:26482
-locator | Eitans-MBP(locator:38488:locator)<v0>:44761
+server1 | Eitans-MBP(server1:38562)&lt;v1>:26482
+locator | Eitans-MBP(locator:38488:locator)&lt;v0>:44761
 
 
           </code></pre>
@@ -164,7 +164,7 @@ locator | Eitans-MBP(locator:38488:locator)<v0>:44761
 gfsh>create region
           </code></pre>
           <pre class="fragment"><code class="shell-output">
-Parameter "name" is required. Use "help <command name>" for assistance.
+Parameter "name" is required. Use "help &lt;command name>" for assistance.
 
           </code></pre>
         </section>
@@ -236,12 +236,12 @@ gfsh>list members
           </code></pre>
           <pre class="fragment"><code class="shell-output">
 Member Count : 2
-Coordinator  : locator (Eitans-MBP(locator:38488:locator)<v0>:44761)
+Coordinator  : locator (Eitans-MBP(locator:38488:locator)&lt;v0>:44761)
 
  Name   | Id
 ------- | -------------------------------------------
-server1 | Eitans-MBP(server1:38562)<v1>:26482
-locator | Eitans-MBP(locator:38488:locator)<v0>:44761
+server1 | Eitans-MBP(server1:38562)&lt;v1>:26482
+locator | Eitans-MBP(locator:38488:locator)&lt;v0>:44761
 
 
           </code></pre>
@@ -313,7 +313,7 @@ Result      : true
 Key Class   : java.lang.String
 Key         : eitan
 Value Class : java.lang.String
-Old Value   : <NULL>
+Old Value   : &lt;NULL>
 
 
 
@@ -350,7 +350,7 @@ Result      : true
 Key Class   : java.lang.String
 Key         : mark
 Value Class : java.lang.String
-Old Value   : <NULL>
+Old Value   : &lt;NULL>
 
 
 
@@ -418,7 +418,7 @@ gfsh>describe member --name=server1
           </code></pre>
           <pre class="fragment"><code class="shell-output">
 Name        : server1
-Id          : Eitans-MBP(server1:38562)<v1>:26482
+Id          : Eitans-MBP(server1:38562)&lt;v1>:26482
 Host        : eitans-mbp
 Regions     : people
 PID         : 38562
@@ -594,12 +594,12 @@ gfsh>list members
           </code></pre>
           <pre class="fragment"><code class="shell-output">
 Member Count : 2
-Coordinator  : locator (Eitans-MBP(locator:38488:locator)<v0>:44761)
+Coordinator  : locator (Eitans-MBP(locator:38488:locator)&lt;v0>:44761)
 
  Name   | Id
 ------- | -------------------------------------------
-server2 | Eitans-MBP(server2:38615)<v2>:29779
-locator | Eitans-MBP(locator:38488:locator)<v0>:44761
+server2 | Eitans-MBP(server2:38615)&lt;v2>:29779
+locator | Eitans-MBP(locator:38488:locator)&lt;v0>:44761
 
 
           </code></pre>
@@ -653,13 +653,13 @@ gfsh>list members
           </code></pre>
           <pre class="fragment"><code class="shell-output">
 Member Count : 3
-Coordinator  : locator (Eitans-MBP(locator:38488:locator)<v0>:44761)
+Coordinator  : locator (Eitans-MBP(locator:38488:locator)&lt;v0>:44761)
 
  Name   | Id
 ------- | -------------------------------------------
-server2 | Eitans-MBP(server2:38615)<v2>:29779
-server1 | Eitans-MBP(server1:38633)<v5>:37311
-locator | Eitans-MBP(locator:38488:locator)<v0>:44761
+server2 | Eitans-MBP(server2:38615)&lt;v2>:29779
+server1 | Eitans-MBP(server1:38633)&lt;v5>:37311
+locator | Eitans-MBP(locator:38488:locator)&lt;v0>:44761
 
 
           </code></pre>
@@ -671,7 +671,7 @@ gfsh>describe member --name=server1
           </code></pre>
           <pre class="fragment"><code class="shell-output">
 Name        : server1
-Id          : Eitans-MBP(server1:38633)<v5>:37311
+Id          : Eitans-MBP(server1:38633)&lt;v5>:37311
 Host        : eitans-mbp
 Regions     : people
 PID         : 38633
@@ -698,7 +698,7 @@ gfsh>describe member --name=server2
           </code></pre>
           <pre class="fragment"><code class="shell-output">
 Name        : server2
-Id          : Eitans-MBP(server2:38615)<v2>:29779
+Id          : Eitans-MBP(server2:38615)&lt;v2>:29779
 Host        : eitans-mbp
 Regions     : people
 PID         : 38615
@@ -766,13 +766,13 @@ gfsh>list members
           </code></pre>
           <pre class="fragment"><code class="shell-output">
 Member Count : 3
-Coordinator  : locator (Eitans-MBP(locator:38488:locator)<v0>:44761)
+Coordinator  : locator (Eitans-MBP(locator:38488:locator)&lt;v0>:44761)
 
  Name   | Id
 ------- | -------------------------------------------
-server2 | Eitans-MBP(server2:38615)<v2>:29779
-server1 | Eitans-MBP(server1:38633)<v5>:37311
-locator | Eitans-MBP(locator:38488:locator)<v0>:44761
+server2 | Eitans-MBP(server2:38615)&lt;v2>:29779
+server1 | Eitans-MBP(server1:38633)&lt;v5>:37311
+locator | Eitans-MBP(locator:38488:locator)&lt;v0>:44761
 
 
           </code></pre>
@@ -796,11 +796,11 @@ gfsh>list members
           </code></pre>
           <pre class="fragment"><code class="shell-output">
 Member Count : 1
-Coordinator  : locator (Eitans-MBP(locator:38488:locator)<v0>:44761)
+Coordinator  : locator (Eitans-MBP(locator:38488:locator)&lt;v0>:44761)
 
  Name   | Id
 ------- | -------------------------------------------
-locator | Eitans-MBP(locator:38488:locator)<v0>:44761
+locator | Eitans-MBP(locator:38488:locator)&lt;v0>:44761
 
 
           </code></pre>
