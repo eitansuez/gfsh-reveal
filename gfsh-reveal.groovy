@@ -1,5 +1,7 @@
 #!/usr/bin/env groovy
 
+import groovy.text.SimpleTemplateEngine
+
 if (args.length != 1) {
   println "Usage: invoke with a single argument (file to be processed)"
   return
@@ -30,9 +32,11 @@ String processLine(line) {
   line.replaceAll(~/</, "&lt;")
 }
 
+def lines = file.readLines()
+
 def slides = []
 def cmd = null, output = ""
-file.eachLine { line ->
+lines.each { line ->
   if (isCommand(line)) {
     if (cmd != null) {
       slides << [cmd: cmd, output: output]
@@ -46,10 +50,10 @@ file.eachLine { line ->
 slides << [cmd: cmd, output: output]
 
 println "slides length is: ${slides.size()}"
-//println slides
 
-def engine = new groovy.text.SimpleTemplateEngine()
+def engine = new SimpleTemplateEngine()
 def templateFilename = "reveal-template.html"
 def reader = new FileReader(new File(templateFilename))
 def writeable = engine.createTemplate(reader).make([slides: slides])
 writeable.writeTo new FileWriter(outputFile)
+
