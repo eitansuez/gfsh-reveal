@@ -20,7 +20,7 @@ if (outputFile.exists()) {
   return
 }
 
-println "ok, we're good! let's have a look at $outputFilename"
+println "ok, we're good! let's have a look at $filename"
 
 boolean isCommand(line) {
   line.startsWith('$') || line.startsWith('gfsh>')
