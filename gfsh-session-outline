@@ -1,0 +1,52 @@
+// start a locator and a server
+gfsh>
+gfsh>start locator --name=locator
+gfsh>list members
+gfsh>start server --name=server1 --server-port=0
+gfsh>list members
+
+// create a replicated region
+gfsh>create region
+gfsh>help create region
+gfsh>create region --name=people --type=REPLICATE
+gfsh>list regions
+gfsh>list members
+gfsh>query --query="select * from /people"
+
+// add a record to the region
+gfsh>help put
+gfsh>put --key="eitan" --value="eitan suez" --region="people"
+gfsh>query --query="select * from /people"
+gfsh>put --key="mark" --value="mark secrist" --region="people"
+gfsh>query --query="select * from /people"
+
+gfsh>describe member --name=server1
+gfsh>describe region --name=people
+
+// start a second server, notice data is replicated
+gfsh>start server --name=server2
+gfsh>describe region --name=people
+gfsh>query --query="select * from /people"
+
+// stop server 1, notice data is still available
+gfsh>stop server --name=server1
+gfsh>query --query="select * from /people"
+
+// restart server1
+gfsh>status server --name=server2
+gfsh>list members
+gfsh>start server --name=server1 --server-port=0
+gfsh>list members
+gfsh>describe member --name=server1
+gfsh>describe member --name=server2
+gfsh>exit
+
+// shutdown
+$ gfsh
+gfsh>connect --locator=localhost[10334]
+gfsh>list members
+gfsh>shutdown
+gfsh>list members
+gfsh>stop locator --name=locator
+
+
